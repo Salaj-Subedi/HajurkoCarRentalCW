@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Photo Herum";
+}
+
+
+
+
+<br>
+<br>
+<br>
+<h1>Your Image Will Be Displayed Here</h1>
+<br>
+<br>
+<br>
+@model List<HajurKoCarRental.Models.ImageModel>
+
+@foreach (var image in Model)
+{
+    <div>
+        <h2>@image.FileName</h2>
+        <img src="@Url.Action("GetImage", "Image", new { id = image.Id })" />
+    </div>
+}
+<br>
+<br>
+<br>

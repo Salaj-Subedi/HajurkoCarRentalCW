@@ -20,7 +20,7 @@ namespace HajurKoCarRental.Data
         public DbSet<Document> Documents { get; set; }
         public DbSet<SpecialOffer> SpecialOffers { get; set; }
         public DbSet<Payment> Payments { get; set; }
-
+        public DbSet<ImageModel> Images { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

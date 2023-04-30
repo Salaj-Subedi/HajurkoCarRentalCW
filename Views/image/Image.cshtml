@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Photo Paum";
+}
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<h1> Please Choose  A photo for uploading</h1>
+<br>
+<br>
+<br>
+
+@using (Html.BeginForm("Upload", "Image", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type="file" name="file" />
+    <input type="submit" value="Upload" />
+}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
