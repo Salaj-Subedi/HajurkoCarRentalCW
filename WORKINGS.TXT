@@ -3,3 +3,42 @@ SAB KAAM YA LEKHNE K K GARNE HO
 
 database banauda  = HajurkoCarRentalDB 
 
+Based on the requirements provided, the application needs to have the following features:
+
+User Management:
+a. Admin can add new staff members and assign their roles, change passwords, rates, and other features that other staff members can.
+b. Staff can change their password.
+c. Customers should be able to create accounts in order to place rental requests and also should be able to change their passwords.
+
+Car Management:
+a. Staff can add/remove cars for rent.
+b. Cars are only rented once authorized by the staff.
+c. Returns are also entered by staff or admin only.
+d. The system should automatically manage the available car inventory.
+
+Rental Management:
+a. Customers can initiate requests for car rental.
+b. The system should automatically retrieve the “Verification documents paper” if the user has rented a car before, from the system storage.
+c. Customers are allowed to cancel their rental request even after rent is approved and no fee should be charged.
+d. The system should show the sales (with date filtering option) with the name of customers, view customers' rental history with authorized by (staffs name).
+e. Customers should be notified if their request is approved and special offers.
+
+Discounts and Special Offers:
+a. The service center provides a 10% discount to regular customers who rent monthly.
+b. The application needs to be able to provide special offers to their customers.
+
+Damage Management:
+a. For any damages done to the car during the process of rental service, there should be a damage request form for the customers where they can notify the companies.
+b. For damages, the staff should be able to provide a charge for the repair bill to the customer.
+c. If bills are not being paid, the customer will not be able to rent cars further.
+d. The system should keep track of the car damages, where paid and unpaid amounts should be shown with the customer's name who rented the car.
+
+Payment Management:
+a. The payment is done physically, however, the system also accepts online payments.
+
+Customer Management:
+a. The system should be able to show the cars that have been frequently on rent and cars that have not been rented.
+b. The system should also be able to keep track of customers who have frequently rented cars and those who have been inactive for a long time (3 months).
+c. Upon registration, the customer should compulsorily add their email address, phone number, and address.
+d. Uploading of a driving license or Citizenship paper as part of customer profile is optional, however, upon rental request, it is compulsory to add a driving license or Citizen paper as per company policy.
+e. Images for driving license or Citizen paper are acceptable in pdf or png format and strictly, the file size should not exceed 1.5 MB upon uploading.
