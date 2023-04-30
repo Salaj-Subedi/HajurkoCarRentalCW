@@ -18,11 +18,16 @@
 
             // Add an event listener for when a file is selected
             fileInput.addEventListener('change', () => {
+                if (!fileInput.value) {
+                    return;
+                }
                 // Get the selected file
                 const file = fileInput.files[0];
 
                 // Get the file type
                 const fileType = file.type;
+
+
 
                 // Check if the file type is valid
                 if (fileType !== 'image/png' && fileType !== 'image/jpg' && fileType !== 'image/jpeg' && fileType !== 'application/pdf') {
@@ -56,8 +61,8 @@
 
     @using (Html.BeginForm("Upload", "Image", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
-        <input type="file" name="file" id="file-input" />
-        <input type="submit" value="Upload" />
+        <input type="file" name="file" id="file-input" class="bth btn-secondary" required />
+        <input type="submit" value="Upload" class="bth btn-primary"  />
     }
     <br>
     <br>

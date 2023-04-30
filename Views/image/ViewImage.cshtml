@@ -16,6 +16,9 @@
             // Get the file input element
             const fileInput = document.getElementById('file-input');
 
+            if (!fileInput.value) {
+                return;
+            }
             // Add an event listener for when a file is selected
             fileInput.addEventListener('change', () => {
                 // Get the selected file
@@ -54,14 +57,18 @@
     @foreach (var image in Model)
     {
         <div>
+            <br /><br />
             <h2>@image.FileName</h2>
             <img src="@Url.Action("GetImage", "Image", new { id = image.Id })" />
+            <br />
             <form method="post" action="@Url.Action("DeleteImage", "Image", new { id = image.Id })">
-                <button type="submit">Delete</button>
+                <button type="submit" class="btn btn-danger">Delete</button>
             </form>
+            <br />
             <form method="post" action="@Url.Action("ReplaceImage", "Image", new { id = image.Id })" enctype="multipart/form-data">
-                <input type="file" name="file" />
-                <button type="submit">Replace</button>
+                <input type="file" name="file" id="file-input" class="bth btn-secondary" required />
+                <br /><br />
+                <button type="submit" class="bth btn-primary">Replace</button>
             </form>
         </div>
     }
