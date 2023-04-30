@@ -2,28 +2,70 @@
     ViewData["Title"] = "Photo Paum";
 }
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Hajur Ko Car Rental</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/HajurKoCarRental.styles.css" asp-append-version="true" />
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get the file input element
+            const fileInput = document.getElementById('file-input');
 
-<h1> Please Choose  A photo for uploading</h1>
-<br>
-<br>
-<br>
+            // Add an event listener for when a file is selected
+            fileInput.addEventListener('change', () => {
+                // Get the selected file
+                const file = fileInput.files[0];
 
-@using (Html.BeginForm("Upload", "Image", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    <input type="file" name="file" />
-    <input type="submit" value="Upload" />
-}
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+                // Get the file type
+                const fileType = file.type;
+
+                // Check if the file type is valid
+                if (fileType !== 'image/png' && fileType !== 'image/jpg' && fileType !== 'image/jpeg' && fileType !== 'application/pdf') {
+                    alert('Invalid file type! Only PNG, JPG, and PDF files are allowed.');
+                    fileInput.value = ''; // Clear the file input field
+                }
+
+                // Check if the file size is valid
+                const fileSize = file.size;
+                const maxSize = 1.5 * 1024 * 1024; // 1.5 MB in bytes
+                if (fileSize > maxSize) {
+                    alert('File is too large! Maximum file size is 1.5 MB.');
+                    fileInput.value = ''; // Clear the file input field
+                }
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1> Please Choose  A photo for uploading</h1>
+    <br>
+    <br>
+    <br>
+
+    @using (Html.BeginForm("Upload", "Image", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="file" name="file" id="file-input" />
+        <input type="submit" value="Upload" />
+    }
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</body>
+</html>

@@ -2,25 +2,74 @@
     ViewData["Title"] = "Photo Herum";
 }
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Hajur Ko Car Rental</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/HajurKoCarRental.styles.css" asp-append-version="true" />
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get the file input element
+            const fileInput = document.getElementById('file-input');
 
+            // Add an event listener for when a file is selected
+            fileInput.addEventListener('change', () => {
+                // Get the selected file
+                const file = fileInput.files[0];
 
+                // Get the file type
+                const fileType = file.type;
 
-<br>
-<br>
-<br>
-<h1>Your Image Will Be Displayed Here</h1>
-<br>
-<br>
-<br>
-@model List<HajurKoCarRental.Models.ImageModel>
+                // Check if the file type is valid
+                if (fileType !== 'image/png' && fileType !== 'image/jpg' && fileType !== 'image/jpeg' && fileType !== 'application/pdf') {
+                    alert('Invalid file type! Only PNG, JPG, and PDF files are allowed.');
+                    fileInput.value = ''; // Clear the file input field
+                }
 
-@foreach (var image in Model)
-{
-    <div>
-        <h2>@image.FileName</h2>
-        <img src="@Url.Action("GetImage", "Image", new { id = image.Id })" />
-    </div>
-}
-<br>
-<br>
-<br>
+                // Check if the file size is valid
+                const fileSize = file.size;
+                const maxSize = 1.5 * 1024 * 1024; // 1.5 MB in bytes
+                if (fileSize > maxSize) {
+                    alert('File is too large! Maximum file size is 1.5 MB.');
+                    fileInput.value = ''; // Clear the file input field
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <br>
+    <br>
+    <br>
+    <h1>Your Image Will Be Displayed Here</h1>
+    <br>
+    <br>
+    <br>
+    @model List<HajurKoCarRental.Models.ImageModel>
+
+    @foreach (var image in Model)
+    {
+        <div>
+            <h2>@image.FileName</h2>
+            <img src="@Url.Action("GetImage", "Image", new { id = image.Id })" />
+            <form method="post" action="@Url.Action("DeleteImage", "Image", new { id = image.Id })">
+                <button type="submit">Delete</button>
+            </form>
+            <form method="post" action="@Url.Action("ReplaceImage", "Image", new { id = image.Id })" enctype="multipart/form-data">
+                <input type="file" name="file" />
+                <button type="submit">Replace</button>
+            </form>
+        </div>
+    }
+
+    <br>
+    <br>
+    <br>
+
+</body>
+</html>
+

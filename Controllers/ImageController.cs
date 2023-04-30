@@ -14,6 +14,47 @@ namespace HajurKoCarRental.Controllers
         }
 
         [HttpPost]
+        public IActionResult DeleteImage(int id)
+        {
+            var image = _context.Images.FirstOrDefault(i => i.Id == id);
+            if (image != null)
+            {
+                _context.Images.Remove(image);
+                _context.SaveChanges();
+            }
+            return RedirectToAction("ViewImage");
+        }
+
+        [HttpPost]
+        public IActionResult ReplaceImage(int id, IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+            {
+                return BadRequest("Invalid file");
+            }
+
+            var image = _context.Images.FirstOrDefault(i => i.Id == id);
+            if (image == null)
+            {
+                return NotFound();
+            }
+
+            byte[] imageData;
+
+            using (var stream = new MemoryStream())
+            {
+                file.CopyTo(stream);
+                imageData = stream.ToArray();
+            }
+
+            image.FileName = file.FileName;
+            image.Data = imageData;
+
+            _context.SaveChanges();
+
+            return RedirectToAction("ViewImage");
+        }
+
         public IActionResult Upload(IFormFile file)
         {
             if (file == null || file.Length == 0)
