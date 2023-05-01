@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Set the dashboard nav item as active
+            $("#nav-dashboard").addClass("active");
+        });
+    </script>
+}
+
+<div class="container">
+    <h2>Admin Dashboard</h2>
+    <p>Welcome to the admin dashboard. Use the side navigation to access different sections.</p>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    Total Number of Cars
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">10</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    Total Number of Customers
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">20</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

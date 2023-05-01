@@ -1,0 +1,88 @@
+﻿@model HajurKoCarRental.Models.ViewModels.RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">@ViewData["Title"]</div>
+                <div class="card-body">
+                    <form method="post" asp-action="Register" enctype="multipart/form-data">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="FirstName">First Name</label>
+                            <input asp-for="FirstName" class="form-control" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="LastName">Last Name</label>
+                            <input asp-for="LastName" class="form-control" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Email">Email Address</label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="PhoneNumber">Phone Number</label>
+                            <input asp-for="PhoneNumber" class="form-control" />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Address">Address</label>
+                            <input asp-for="Address" class="form-control" />
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CitizenshipFrontPhoto">Citizenship (Front)</label>
+                            <input asp-for="CitizenshipFrontPhoto" type="file" class="form-control-file" id="citizenshipFrontPhoto" onchange="checkFileSize(this)" />
+                            <span asp-validation-for="CitizenshipFrontPhoto" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CitizenshipBackPhoto">Citizenship (Back)</label>
+                            <input asp-for="CitizenshipBackPhoto" type="file" class="form-control-file" id="citizenshipBackPhoto" onchange="checkFileSize(this)" />
+                            <span asp-validation-for="CitizenshipBackPhoto" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="License">License (Front)</label>
+                            <input type="file" asp-for="License" class="form-control-file" id="license" onchange="checkFileSize(this)" />
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Password">Password</label>
+                            <input asp-for="Password" class="form-control" id="Password" oninput="comparePasswords()" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ConfirmPassword">Confirm Password</label>
+                            <input asp-for="ConfirmPassword" class="form-control" id="ConfirmPassword" oninput="comparePasswords()" />
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        function checkFileSize(input) {
+            // Set a maximum file size (in bytes)
+            const maxFileSize = 1.5 * 1024 * 1024; // 1.5 MB
+            if (input.files && input.files[0]) {
+                if (input.files[0].size > maxFileSize) {
+                    alert("The selected file exceeds the maximum allowed size (1.5 MB). Please choose a smaller file.");
+                    input.value = ""; // Clear the selected file
+                }
+            }
+        }
+    </script>
+}
+
